@@ -1,9 +1,12 @@
 import React from 'react'
+import Hero from './sections/Hero'
 
 const LandingPage = () => {
-  return (
-    <div>LandingPage</div>
-  )
+    return (
+        <div>
+            <Hero />
+        </div>
+    )
 }
 
 export default LandingPage
