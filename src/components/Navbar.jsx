@@ -1,43 +1,48 @@
-import React from 'react'
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <div>
-            <nav class="navbar navbar-expand-lg navbar-primary bg-warning backdrop-filter: blur(10px) fixed-top py-3">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">INNOVATE</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+            <nav className="bg-yellow-500 bg-opacity-70 backdrop-blur-lg fixed top-0 left-0 right-0 py-3 px-10 z-50">
+                <div className="container mx-auto px-4 flex justify-between items-center">
+                    <a className="text-lg font-bold text-blue-700" href="#">FutureFemTeck</a>
+                    <button
+                        className="text-blue-700 md:hidden focus:outline-none"
+                        type="button"
+                        aria-label="Toggle navigation"
+                    >
+                        <span className="text-2xl">&#9776;</span>
                     </button>
-                    <div class="collapse navbar-collapse float-right" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact Us</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    More
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
-                                    <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="#">FAQs</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <div className="hidden md:flex md:items-center space-x-6">
+                        <Link className="text-blue-700 hover:text-blue-900" to="/home">Home</Link>
+                        <a className="text-blue-700 hover:text-blue-900" href="#">About Us</a>
+                        <a className="text-blue-700 hover:text-blue-900" href="#">Contact Us</a>
+                        <div className="relative group">
+                            <a
+                                className="text-blue-700 hover:text-blue-900 cursor-pointer"
+                                role="button"
+                                aria-haspopup="true"
+                            >
+                                More
+                            </a>
+                            <ul className="absolute hidden group-hover:block bg-white text-gray-800 shadow-md mt-2 rounded">
+                                <li>
+                                    <a className="block px-4 py-2 hover:bg-gray-200" href="login.html">Login</a>
+                                </li>
+                                <li>
+                                    <a className="block px-4 py-2 hover:bg-gray-200" href="signup.html">Sign Up</a>
+                                </li>
+                                <li>
+                                    <a className="block px-4 py-2 hover:bg-gray-200" href="#">FAQs</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         </div>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
