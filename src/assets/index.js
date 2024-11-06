@@ -20,4 +20,8 @@ export { default as partnerLogo12 } from "./partner-logo12.jpg"
 export { default as partnerLogo13 } from "./partner-logo13.jpg"
 export { default as partnerLogo14 } from "./partner-logo14.jpg"
 export { default as partnerLogo15 } from "./partner-logo15.jpg"
+export { default as womenImage1 } from "./women-in-tech1.jpg"
+export { default as womenImage2 } from "./women-in-tech2.jpg"
+export { default as womenImage3 } from "./women-in-tech3.jpg"
+export { default as womenImage4 } from "./women-in-tech4.jpg"
 

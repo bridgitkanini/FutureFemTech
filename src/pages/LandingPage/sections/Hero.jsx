@@ -1,72 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import {
+  womenImage1,
+  womenImage2,
+  womenImage3,
+  womenImage4,
+} from "../../../assets";
 
 const Hero = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    const slides = [
-        "src/assets/women-in-tech1.jpg",
-        "src/assets/women-in-tech2.jpg",
-        "src/assets/women-in-tech3.jpg",
-        "src/assets/women-in-tech4.jpg"
-    ];
+  // Slides with image and text
+  const slides = [
+    {
+      image: womenImage1,
+      text: "Empowering Women in STEM",
+    },
+    { image: womenImage2, text: "Inspiring Innovation" },
+    { image: womenImage3, text: "Building Future Leaders" },
+    { image: womenImage4, text: "Breaking Barriers" },
+  ];
+  
 
-    const handlePrevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
-    };
+  // Infinite carousel auto-advance every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
-    const handleNextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
-    };
+  console.log(slides[currentIndex].image); // Check the path in the console
 
-    return (
-        <section className="carousel-section py-5">
-            <div className="relative">
-                <div className="flex justify-center mb-4">
-                    {slides.map((_, index) => (
-                        <button
-                            key={index}
-                            type="button"
-                            className={`rounded-full w-2 h-2 mx-1 ${currentIndex === index ? 'bg-blue-500' : 'bg-gray-300'}`}
-                            aria-current={currentIndex === index ? 'true' : 'false'}
-                            aria-label={`Slide ${index + 1}`}
-                            onClick={() => setCurrentIndex(index)}
-                        ></button>
-                    ))}
-                </div>
+  return (
+    <section className="carousel-section relative w-full h-screen overflow-hidden">
+      {/* Slide background */}
+      <div
+        className="w-full h-full bg-cover bg-center transition-all duration-700 ease-in-out"
+        style={{
+          backgroundImage: `url(${slides[currentIndex].image})`,
+        }}
+      >
+        {/* Centralized text overlay */}
+        <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-40 text-white">
+          <h2 className="text-4xl font-bold mb-4">
+            {slides[currentIndex].text}
+          </h2>
+        </div>
+      </div>
 
-                <div className="flex justify-center">
-                    <div className="relative col-10">
-                        <div className="overflow-hidden relative w-full">
-                            <div className="transition-all duration-500 ease-in-out">
-                                <img
-                                    src={slides[currentIndex]}
-                                    className="d-block w-full h-auto object-cover"
-                                    alt={`Slide ${currentIndex + 1}`}
-                                />
-                            </div>
-                        </div>
-
-                        <button
-                            className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2 focus:outline-none"
-                            onClick={handlePrevSlide}
-                            aria-label="Previous"
-                        >
-                            <span className="material-icons">chevron_left</span>
-                        </button>
-                        <button
-                            className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2 focus:outline-none"
-                            onClick={handleNextSlide}
-                            aria-label="Next"
-                        >
-                            <span className="material-icons">chevron_right</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
+      {/* Navigation dots */}
+      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            className={`w-3 h-3 rounded-full ${
+              currentIndex === index ? "bg-white" : "bg-gray-500"
+            }`}
+            aria-current={currentIndex === index ? "true" : "false"}
+            aria-label={`Slide ${index + 1}`}
+            onClick={() => setCurrentIndex(index)}
+          ></button>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default Hero;
-
-
