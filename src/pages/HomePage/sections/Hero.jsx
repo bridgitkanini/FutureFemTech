@@ -13,7 +13,7 @@ const Hero = () => {
             <div className="container mx-auto px-4">
                 <div className="flex justify-center">
                     <div className="max-w-2xl">
-                        <h1 className="text-4xl md:text-5xl font-bold">
+                        <h1 className="text-2xl md:text-5xl font-bold">
                             Unlock the Future with STEM - Personalized Just for You!
                         </h1>
                         <hr className="border-t-2 border-white w-24 mx-auto my-4" />
