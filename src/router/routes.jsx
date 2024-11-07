@@ -6,6 +6,7 @@ import LandingPage from '../pages/LandingPage/LandingPage';
 import Navbar from '../components/Navbar';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
+import Footer from '../components/Footer';
 
 const AppRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const AppRoutes = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/sign-up" element={<SignUpPage />} />
             </Routes>
+            <Footer />
         </Router>
     );
 };
