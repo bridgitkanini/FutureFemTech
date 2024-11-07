@@ -7,6 +7,9 @@ import Navbar from '../components/Navbar';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import Footer from '../components/Footer';
+import CareersPage from '../pages/CareersPage/CareersPage';
+import MentorshipPage from '../pages/MentorshipPage/MentorshipPage';
+import ScholarshipsPage from '../pages/ScholarshipsPage/ScholarshipsPage';
 
 const AppRoutes = () => {
     return (
@@ -17,6 +20,9 @@ const AppRoutes = () => {
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/sign-up" element={<SignUpPage />} />
+                <Route path="/careers" element={<CareersPage />} />
+                <Route path="/mentorship" element={<MentorshipPage />} />
+                <Route path="/scholarships" element={<ScholarshipsPage />} />
             </Routes>
             <Footer />
         </Router>
