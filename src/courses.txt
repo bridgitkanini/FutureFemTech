@@ -1,0 +1,216 @@
+1. Computer Science & Information Technology
+- Software Development
+     Web Development (Front-end, Back-end, Full-stack)
+     Mobile Development (iOS, Android)
+     Game Development
+     DevOps
+- Data Science & Artificial Intelligence
+     Machine Learning
+     Data Analysis & Visualization
+     Natural Language Processing
+     Deep Learning
+- Cybersecurity
+     Ethical Hacking
+     Network Security
+     Digital Forensics
+     Cloud Security
+- IT Infrastructure & Systems
+     Cloud Computing (AWS, Azure, Google Cloud)
+     Systems Administration
+     IT Support & Helpdesk
+     Database Administration (SQL, NoSQL)
+
+1. Computer Science & Information Technology
+- Software Development
+     Web Development (Front-end, Back-end, Full-stack)
+     Mobile Development (iOS, Android)
+     Game Development
+     DevOps
+- Data Science & Artificial Intelligence
+     Machine Learning
+     Data Analysis & Visualization
+     Natural Language Processing
+     Deep Learning
+- Cybersecurity
+     Ethical Hacking
+     Network Security
+     Digital Forensics
+     Cloud Security
+- IT Infrastructure & Systems
+     Cloud Computing (AWS, Azure, Google Cloud)
+     Systems Administration
+     IT Support & Helpdesk
+     Database Administration (SQL, NoSQL)
+
+
+
+Here’s a comprehensive list of STEM careers with categories and subcategories, each offering free online courses and certification options. I’ve also included links to sites providing free courses or certifications for each.
+
+1. Computer Science & Information Technology
+
+Software Development
+
+Coursera (Free courses with financial aid options)
+edX
+Microsoft Learn
+
+- Web Development
+FreeCodeCamp
+Coursera
+Codecademy
+
+- Mobile Development
+Udacity (Free courses with paid options)
+Google Developers Training
+
+- Game Development
+Unity Learn
+Coursera
+
+- DevOps
+Microsoft Learn
+Google Cloud Training
+
+Data Science & Artificial Intelligence
+
+- Machine Learning
+Google AI
+Coursera
+
+- Data Analysis & Visualization
+DataCamp (Free trials)
+edX
+
+- Natural Language Processing
+Coursera
+Udacity
+
+- Deep Learning
+DeepLearning.AI
+Kaggle Learn
+
+Cybersecurity
+
+- Ethical Hacking
+Cybrary
+edX
+
+- Network Security
+Cisco Networking Academy
+
+- Digital Forensics
+Coursera
+
+IT Infrastructure & Systems
+
+- Cloud Computing
+AWS Educate
+Google Cloud Training
+
+- Systems Administration
+Microsoft Learn
+
+- Database Administration
+SQLZoo
+
+
+2. Engineering
+
+Mechanical Engineering
+
+- CAD Design & Simulation
+Coursera
+MIT OpenCourseWare
+
+Electrical & Electronics Engineering
+
+- Circuit Design
+edX
+MIT OpenCourseWare
+
+- Embedded Systems
+Coursera
+
+Civil & Structural Engineering
+
+- Structural Analysis
+OpenLearn
+
+- Construction Management
+FutureLearn
+
+- Urban Planning
+Coursera
+
+- Chemical Engineering
+MIT OpenCourseWare
+
+- Aerospace Engineering
+OpenCourseWare by MIT
+
+
+3. Biological & Biomedical Sciences
+- Biotechnology
+Coursera
+FutureLearn
+
+- Biomedical Engineering
+edX
+
+- Neuroscience
+Coursera
+FutureLearn
+
+- Environmental Science & Ecology
+Coursera
+edX
+
+
+4. Mathematics & Statistics
+- Pure Mathematics
+MIT OpenCourseWare
+
+- Applied Mathematics
+Coursera
+
+- Statistics & Data Analysis
+Biostatistics
+Johns Hopkins Open Courses
+edX
+
+
+5. Physical Sciences
+
+Physics
+
+- Theoretical Physics
+MIT OpenCourseWare
+
+Chemistry
+
+- Organic Chemistry
+Khan Academy
+Coursera
+
+- Geology & Earth Sciences
+Coursera
+FutureLearn
+
+
+6. Environmental & Earth Sciences
+- Environmental Management
+Coursera
+OpenLearn
+- Climate Change Studies
+edX
+
+
+7. Health & Medical Sciences
+- Public Health
+FutureLearn
+
+- Nursing & Healthcare Support
+Coursera
+
+- Medical Laboratory Science
+OpenLearn

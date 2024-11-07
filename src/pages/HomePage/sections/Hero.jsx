@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
     return (
@@ -21,12 +22,12 @@ const Hero = () => {
                             Empowering the next generation of girls in STEM through personalized learning paths that adapt to
                             your passions, pace, and progress.
                         </p>
-                        <a
-                            className="mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg text-lg"
-                            href="#about"
+                        <Link
+                            className="mt-6 inline-block bg-yellow-500 hover:bg-yellow-700 text-white font-semibold py-3 px-6 rounded-lg text-lg"
+                            to="/"
                         >
-                            Find Out More
-                        </a>
+                            Discover Your Career Path
+                        </Link>
                     </div>
                 </div>
             </div>
