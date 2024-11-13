@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CareerForm = () => {
   const [answers, setAnswers] = useState([]);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null); // New state for tracking selected option
+  const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
   const questions = [
@@ -33,7 +34,7 @@ const CareerForm = () => {
   ];
 
   const handleAnswerSelection = (option) => {
-    setSelectedOption(option); // Set the selected option
+    setSelectedOption(option);
   };
 
   const handleNextQuestion = async () => {
@@ -43,16 +44,18 @@ const CareerForm = () => {
 
     if (nextQuestionIndex < questions.length) {
       setQuestionIndex(nextQuestionIndex);
-      setSelectedOption(null); // Reset the selected option for the next question
+      setSelectedOption(null);
     } else {
-      // Final submit to get suitable career choices
       try {
         const response = await axios.post("https://gemini-api-url.com", {
           responses: updatedAnswers,
         });
 
         const suitableCareerPath = response.data.suitableCareer;
-        navigate(`/career-path/${suitableCareerPath}`);
+        const careerChoices = response.data.careerChoices; // Ensure this is returned from the API
+        navigate(`/career-path/${suitableCareerPath}`, {
+          state: { careerChoices },
+        });
       } catch (error) {
         console.error("Error fetching career recommendations:", error);
       }
@@ -66,7 +69,6 @@ const CareerForm = () => {
       </h1>
       <p className="text-lg mb-4">{questions[questionIndex]}</p>
 
-      {/* Radio button options for each question */}
       <div className="flex flex-col gap-4 mb-6">
         {options[questionIndex].map((option) => (
           <label key={option} className="flex items-center gap-2">
@@ -83,21 +85,27 @@ const CareerForm = () => {
         ))}
       </div>
 
-      {/* Next button to proceed to the next question or see career choices */}
       <div className="text-center">
-        <button
-          onClick={handleNextQuestion}
-          disabled={!selectedOption} // Enable only when an option is selected
-          className={`px-4 py-2 rounded focus:outline-none ${
-            selectedOption
-              ? "bg-blue-600 text-white hover:bg-blue-700"
-              : "bg-gray-300 text-gray-500 cursor-not-allowed"
-          }`}
-        >
-          {questionIndex === questions.length - 1
-            ? "See Suitable Career Choices"
-            : "Next"}
-        </button>
+        {questionIndex === questions.length - 1 ? (
+          <Link
+            to={`/career-path/${selectedOption}`}
+            className={`px-4 py-2 rounded focus:outline-none bg-blue-600 text-white hover:bg-blue-700`}
+          >
+            See Suitable Career Choices
+          </Link>
+        ) : (
+          <button
+            onClick={handleNextQuestion}
+            disabled={!selectedOption}
+            className={`px-4 py-2 rounded focus:outline-none ${
+              selectedOption
+                ? "bg-blue-600 text-white hover:bg-blue-700"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

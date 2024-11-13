@@ -6,7 +6,7 @@ const CareersPage = () => {
   const { careerChoices } = location.state || {}; // Access career choices passed from CareerForm
 
   return (
-    <div>
+    <div className="text-center py-20">
       <h1 className="text-2xl font-bold text-center mb-6">
         Recommended Career Paths
       </h1>
@@ -42,7 +42,9 @@ const CareersPage = () => {
           ))}
         </div>
       ) : (
-        <p>No career recommendations available at the moment.</p>
+        <p className="text-xl text-gray-600 my-12">
+          No career recommendations available at the moment.
+        </p>
       )}
     </div>
   );
