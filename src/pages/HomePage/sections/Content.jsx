@@ -9,7 +9,7 @@ const Content = () => {
       image: careerLogo,
       description:
         "Explore various career paths in STEM, from software development to environmental engineering. Find the best fit for your skills and interests, and take the first step towards a rewarding future.",
-      link: "/careers",
+      link: "/career-form",
       button: "Explore Careers",
     },
     {
