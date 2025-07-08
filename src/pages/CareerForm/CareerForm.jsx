@@ -1,12 +1,5 @@
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
-});
-
 const CareerForm = () => {
   const [answers, setAnswers] = useState([]);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -55,7 +48,6 @@ const CareerForm = () => {
       try {
         setLoading(true);
         setError("");
-        // Compose a prompt from the answers
         const prompt = `
 Based on these answers, suggest the most suitable STEM career path and 3 alternative options.
 Answers: ${updatedAnswers.join(", ")}
@@ -67,52 +59,58 @@ Respond ONLY with valid JSON in this format:
 Do not include any explanation or extra text.
 `;
 
-        console.log("Gemini API Key:", import.meta.env.VITE_GEMINI_API_KEY);
-        console.log("About to call Gemini API with prompt:", prompt);
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash",
-          contents: prompt,
-        });
-        console.log("Gemini response:", response);
-
-        // Parse the JSON from Gemini's response
-        let data;
+        console.log("About to call Gemini proxy with prompt:", prompt);
         try {
-          data = JSON.parse(response.text);
-        } catch {
-          // Try to extract JSON object from the response using regex
-          const match = response.text.match(/\{[\s\S]*\}/);
-          if (match) {
-            try {
-              data = JSON.parse(match[0]);
-            } catch {
+          const response = await fetch("http://localhost:4000/api/gemini", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt }),
+          });
+          const result = await response.json();
+          console.log("Gemini proxy response:", result);
+
+          let data;
+          try {
+            data = JSON.parse(result.text);
+          } catch {
+            const match = result.text.match(/\{[\s\S]*\}/);
+            if (match) {
+              try {
+                data = JSON.parse(match[0]);
+              } catch {
+                setError("AI response was not in the expected format. Please try again.");
+                setLoading(false);
+                return;
+              }
+            } else {
               setError("AI response was not in the expected format. Please try again.");
               setLoading(false);
               return;
             }
-          } else {
-            setError("AI response was not in the expected format. Please try again.");
+          }
+          if (!data || !data.suitableCareer || !data.careerChoices) {
+            setError("No career recommendations available at the moment.");
             setLoading(false);
             return;
           }
-        }
-        if (!data || !data.suitableCareer || !data.careerChoices) {
-          setError("No career recommendations available at the moment.");
+
+          const suitableCareerPath = data.suitableCareer;
+          const careerChoices = data.careerChoices;
+
+          console.log("Navigating with:", { suitableCareerPath, careerChoices });
+          navigate(`/career-path/${suitableCareerPath}`, {
+            state: { careerChoices },
+          });
           setLoading(false);
-          return;
+        } catch (error) {
+          console.error("Fetch error:", error);
+          setLoading(false);
+          setError("Error fetching career recommendations. Please try again.");
         }
-
-        const suitableCareerPath = data.suitableCareer;
-        const careerChoices = data.careerChoices;
-
-        navigate(`/career-path/${suitableCareerPath}`, {
-          state: { careerChoices },
-        });
-        setLoading(false);
       } catch (error) {
-        console.error("Gemini API error:", error);
         setLoading(false);
         setError("Error fetching career recommendations. Please try again.");
+        console.error("Error fetching career recommendations:", error);
       }
     }
   };
@@ -156,12 +154,17 @@ Do not include any explanation or extra text.
       {!loading && (
         <div className="text-center">
           {questionIndex === questions.length - 1 ? (
-            <Link
-              to={`/career-path/${selectedOption}`}
-              className={`px-4 py-2 rounded focus:outline-none bg-blue-600 text-white hover:bg-blue-700`}
+            <button
+              onClick={handleNextQuestion}
+              disabled={!selectedOption || loading}
+              className={`px-4 py-2 rounded focus:outline-none ${
+                selectedOption && !loading
+                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              }`}
             >
               See Suitable Career Choices
-            </Link>
+            </button>
           ) : (
             <button
               onClick={handleNextQuestion}

@@ -1,50 +1,49 @@
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const CareersPage = () => {
   const location = useLocation();
-  const { careerChoices } = location.state || {}; // Access career choices passed from CareerForm
+  const { careerChoices } = location.state || {};
 
-  return (
-    <div className="text-center py-20">
-      <h1 className="text-2xl font-bold text-center mb-6">
-        Recommended Career Paths
-      </h1>
+  // Save to localStorage if present
+  useEffect(() => {
+    if (careerChoices && Array.isArray(careerChoices)) {
+      localStorage.setItem("careerChoices", JSON.stringify(careerChoices));
+    }
+  }, [careerChoices]);
 
-      {careerChoices && careerChoices.length > 0 ? (
-        <div>
-          {careerChoices.map((career, index) => (
-            <div key={index} className="mb-6">
-              <h2 className="text-xl font-semibold">{career.careerName}</h2>
-              <p className="mb-2">{career.description}</p>
-              <h3 className="font-medium">Prospective Job Titles:</h3>
-              <ul className="list-disc pl-5">
-                {career.jobTitles.map((title, idx) => (
-                  <li key={idx}>{title}</li>
-                ))}
-              </ul>
-              <h3 className="font-medium">Free Courses:</h3>
-              <ul className="list-disc pl-5">
-                {career.courseLinks.map((link, idx) => (
-                  <li key={idx}>
-                    <a
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      ) : (
+  // Try to load from localStorage if not present
+  let choices = careerChoices;
+  if (!choices) {
+    const stored = localStorage.getItem("careerChoices");
+    if (stored) {
+      try {
+        choices = JSON.parse(stored);
+      } catch {
+        // Ignore JSON parse errors
+      }
+    }
+  }
+
+  if (!choices || !Array.isArray(choices) || choices.length === 0) {
+    return (
+      <div className="text-center py-20">
+        <h1 className="text-2xl font-bold mb-6">Recommended Career Paths</h1>
         <p className="text-xl text-gray-600 my-12">
           No career recommendations available at the moment.
         </p>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1 className="text-2xl font-bold text-center mb-6">Recommended Career Paths</h1>
+      <ul className="list-disc pl-5 max-w-xl mx-auto">
+        {choices.map((career) => (
+          <li key={career} className="text-lg mb-2">{career}</li>
+        ))}
+      </ul>
     </div>
   );
 };
