@@ -43,13 +43,18 @@ const Hero = () => {
 
   return (
     <section
-      style={{ minHeight: "100vh", position: "relative", width: "100%" }}
+      style={{ minHeight: "60vh", position: "relative", width: "100%" }}
+      className="md:min-h-screen"
     >
-      <div style={{ width: "100%", height: "100vh", position: "relative" }}>
+      <div
+        style={{ width: "100%", position: "relative" }}
+        className="h-[60vh] md:h-screen"
+      >
         <img
           src={heroSlides[currentIndex].src}
           alt={heroSlides[currentIndex].alt}
-          style={{ width: "100%", height: "100vh", objectFit: "cover" }}
+          style={{ width: "100%", objectFit: "cover" }}
+          className="h-[60vh] md:h-screen"
         />
         <div
           style={{
@@ -66,7 +71,7 @@ const Hero = () => {
             color: "white",
           }}
         >
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-4 px-2 text-center">
             {heroSlides[currentIndex].title}
           </h2>
         </div>
@@ -75,23 +80,25 @@ const Hero = () => {
       <div
         style={{
           position: "absolute",
-          bottom: 20,
+          bottom: 16,
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
           gap: 8,
         }}
+        className="z-10"
       >
         {heroSlides.map((_, idx) => (
           <button
             key={idx}
             style={{
-              width: 12,
-              height: 12,
+              width: 16,
+              height: 16,
               borderRadius: "50%",
               background: currentIndex === idx ? "white" : "gray",
               border: "none",
             }}
+            className="active:scale-110 focus:outline-none"
             aria-current={currentIndex === idx ? "true" : "false"}
             aria-label={`Slide ${idx + 1}`}
             onClick={() => setCurrentIndex(idx)}

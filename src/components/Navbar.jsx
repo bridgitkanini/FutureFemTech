@@ -1,82 +1,82 @@
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
-  // Get the current location (route) using useLocation hook
   const location = useLocation();
-
-  // Determine if the current route is the landing page (e.g., '/')
   const isLandingPage = location.pathname === "/";
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Navlinks for both landing and other pages
+  const navLinks = [
+    { to: "/home", label: "Home" },
+    { to: "/career-form", label: "Careers" },
+    { to: "/mentorship", label: "Mentorship" },
+    { to: "/scholarships", label: "Scholarships" },
+  ];
+  const authLinks = [
+    { to: "/login", label: "Login" },
+    { to: "/sign-up", label: "Sign Up" },
+  ];
 
   return (
-    <div>
-      <nav className="bg-yellow-500 bg-opacity-70 backdrop-blur-lg fixed top-0 left-0 right-0 py-3 px-10 z-50">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <h2 className="text-lg font-bold text-black">FutureFemTeck</h2>
-          <div className="hidden md:flex md:items-center ml-auto space-x-6">
-            {/* Conditionally render Login and Sign Up links */}
-            {isLandingPage && (
-              <div className="flex gap-6">
-                <Link className="text-black hover:text-blue-900" to="/home">
-                  Home
-                </Link>
-                <Link
-                  className="text-black hover:text-blue-900"
-                  to="/career-form"
-                >
-                  Careers
-                </Link>
-                <Link
-                  className="text-black hover:text-blue-900"
-                  to="/mentorship"
-                >
-                  Mentorship
-                </Link>
-                <Link
-                  className="text-black hover:text-blue-900"
-                  to="/scholarships"
-                >
-                  Scholarships
-                </Link>
-                <Link className="text-black hover:text-blue-900" to="/login">
-                  Login
-                </Link>
-                <Link className="text-black hover:text-blue-900" to="/sign-up">
-                  Sign Up
-                </Link>
-              </div>
-            )}
-          </div>
-          <div>
-            {/* Conditionally render the other links (only if not on landing page) */}
-            {!isLandingPage && (
-              <div className="flex gap-6">
-                <Link className="text-black hover:text-blue-900" to="/home">
-                  Home
-                </Link>
-                <Link
-                  className="text-black hover:text-blue-900"
-                  to="/career-form"
-                >
-                  Careers
-                </Link>
-                <Link
-                  className="text-black hover:text-blue-900"
-                  to="/mentorship"
-                >
-                  Mentorship
-                </Link>
-                <Link
-                  className="text-black hover:text-blue-900"
-                  to="/scholarships"
-                >
-                  Scholarships
-                </Link>
-              </div>
-            )}
-          </div>
+    <nav className="bg-yellow-500 bg-opacity-70 backdrop-blur-lg fixed top-0 left-0 right-0 py-3 px-4 md:px-10 z-50">
+      <div className="container mx-auto flex items-center justify-between">
+        <h2 className="text-lg font-bold text-black">FutureFemTeck</h2>
+        {/* Hamburger for mobile */}
+        <button
+          className="md:hidden flex items-center px-2 py-1 text-black focus:outline-none"
+          onClick={() => setMobileOpen((open) => !open)}
+          aria-label="Toggle navigation menu"
+        >
+          <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+        {/* Desktop navlinks */}
+        <div className="hidden md:flex ml-auto items-center space-x-6">
+          {navLinks.map((link) => (
+            <Link key={link.to} className="text-black hover:text-blue-900" to={link.to}>
+              {link.label}
+            </Link>
+          ))}
+          {isLandingPage && authLinks.map((link) => (
+            <Link key={link.to} className="text-black hover:text-blue-900" to={link.to}>
+              {link.label}
+            </Link>
+          ))}
         </div>
-      </nav>
-    </div>
+      </div>
+      {/* Mobile navlinks dropdown */}
+      {mobileOpen && (
+        <div className="md:hidden bg-yellow-500 bg-opacity-95 px-4 pt-2 pb-4 flex flex-col space-y-3 shadow-lg absolute left-0 right-0 top-full z-50 animate-fade-in">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              className="text-black hover:text-blue-900 py-2 border-b border-yellow-300"
+              to={link.to}
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          {isLandingPage && authLinks.map((link) => (
+            <Link
+              key={link.to}
+              className="text-black hover:text-blue-900 py-2 border-b border-yellow-300"
+              to={link.to}
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </nav>
   );
 };
 

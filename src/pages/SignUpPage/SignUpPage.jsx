@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen pt-20 bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+    <div className="flex justify-center items-center min-h-[60vh] md:min-h-screen pt-10 md:pt-20 bg-gray-100 px-2">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-4 md:p-8">
         <h2 className="text-2xl font-semibold text-center mb-6">
           Registration Form
         </h2>

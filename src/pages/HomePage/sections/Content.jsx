@@ -1,4 +1,3 @@
-import React from "react";
 import { careerLogo, mentorshipLogo, scholarshipLogo } from "../../../assets";
 import { Link } from "react-router-dom";
 
@@ -40,23 +39,23 @@ const Content = () => {
         {cardsData.map((card, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row min-h-[300px] max-w-[750px] items-center justify-center bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+            className="flex flex-col md:flex-row min-h-[250px] md:min-h-[300px] w-full max-w-[95vw] md:max-w-[750px] items-center justify-center bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
           >
             <img
               src={card.image}
               alt={card.title}
-              className="w-full h-64 object-contain"
+              className="w-full h-40 md:h-64 object-contain"
             />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-gray-800">
+            <div className="p-4 md:p-6 w-full">
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
                 {card.title}
               </h3>
-              <p className="text-gray-600 mt-4">{card.description}</p>
+              <p className="text-gray-600 mt-2 md:mt-4 text-base md:text-lg">{card.description}</p>
               {/* Link Button for each card */}
               <div className="mt-4">
                 <Link
                   to={card.link} // Dynamically use the link for each card
-                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg text-lg"
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg text-base md:text-lg"
                 >
                   {card.button}
                 </Link>
@@ -70,7 +69,7 @@ const Content = () => {
       <div className="mt-12">
         <Link
           className="my-6 inline-block bg-yellow-500 hover:bg-yellow-700 text-black font-semibold py-3 px-6 rounded-lg text-lg"
-          to="/forum" // Link to your forum page or external URL
+          to="/" // Link to your forum page or external URL
         >
           Join Our Forum
         </Link>

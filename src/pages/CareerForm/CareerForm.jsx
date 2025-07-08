@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -63,7 +63,7 @@ const CareerForm = () => {
   };
 
   return (
-    <div className="career-form my-20 mx-auto max-w-xl p-6 bg-white rounded-lg shadow-md">
+    <div className="career-form my-20 mx-auto w-full max-w-xl p-3 md:p-6 bg-white">
       <h1 className="text-2xl font-bold mb-6 text-center">
         Find Your Ideal STEM Career
       </h1>
