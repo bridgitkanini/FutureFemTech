@@ -24,7 +24,7 @@ const Hero = () => {
                         </p>
                         <Link
                             className="mt-6 inline-block bg-yellow-500 hover:bg-yellow-700 text-white font-semibold py-3 px-6 rounded-lg text-lg"
-                            to="/"
+                            to="/career-form"
                         >
                             Discover Your Career Path
                         </Link>
