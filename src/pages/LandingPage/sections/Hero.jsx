@@ -1,123 +1,84 @@
-import React, { useState, useEffect } from "react";
-import {
-  womenImage1,
-  womenImage2,
-  womenImage3,
-  womenImage4,
-} from "../../../assets";
+import { useState, useEffect } from "react";
+import womenImage1 from "../../../assets/women-in-tech1.jpg";
+import womenImage2 from "../../../assets/women-in-tech2.jpg";
+import womenImage3 from "../../../assets/women-in-tech3.jpg";
+import womenImage4 from "../../../assets/women-in-tech4.jpg";
+
+const heroSlides = [
+  {
+    src: womenImage1,
+    alt: "Empowering Women in STEM",
+    title: "Empowering Women in STEM",
+  },
+  {
+    src: womenImage2,
+    alt: "Inspiring Innovation",
+    title: "Inspiring Innovation",
+  },
+  {
+    src: womenImage3,
+    alt: "Building Future Leaders",
+    title: "Building Future Leaders",
+  },
+  {
+    src: womenImage4,
+    alt: "Breaking Barriers",
+    title: "Breaking Barriers",
+  },
+];
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Infinite carousel auto-advance every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === 3 ? 0 : prevIndex + 1));
+      setCurrentIndex((prevIndex) => (prevIndex === heroSlides.length - 1 ? 0 : prevIndex + 1));
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Helper to get image src, fallback to public if import fails
-  const getImageSrc = (img, fallback) => {
-    if (img) return img;
-    return fallback;
-  };
-
-  console.log(womenImage1, womenImage2, womenImage3, womenImage4);
-
   return (
-    <section className="carousel-section relative w-full h-screen overflow-hidden">
-      {/* Slide 1 */}
-      {currentIndex === 0 && (
-        <div className="w-full h-full relative transition-all duration-700 ease-in-out">
-          <img
-            src={getImageSrc(womenImage1, '/src/assets/women-in-tech1.jpg')}
-            alt="Empowering Women in STEM"
-            className="w-full h-full object-cover"
-            onError={e => {
-              e.target.onerror = null;
-              e.target.src = '/src/assets/women-in-tech1.jpg';
-              console.error('Failed to load image:', womenImage1);
-            }}
-          />
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-40 text-white">
-            <h2 className="text-4xl font-bold mb-4">
-              Empowering Women in STEM
-            </h2>
-          </div>
+    <section style={{ minHeight: "100vh", position: "relative", width: "100%" }}>
+      <div style={{ width: "100%", height: "100vh", position: "relative" }}>
+        <img
+          src={heroSlides[currentIndex].src}
+          alt={heroSlides[currentIndex].alt}
+          style={{ width: "100%", height: "100vh", objectFit: "cover" }}
+        />
+        <div style={{
+          position: "absolute",
+          top: 0, left: 0, right: 0, bottom: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "rgba(0,0,0,0.4)",
+          color: "white"
+        }}>
+          <h2 className="text-4xl font-bold mb-4">{heroSlides[currentIndex].title}</h2>
         </div>
-      )}
-
-      {/* Slide 2 */}
-      {currentIndex === 1 && (
-        <div className="w-full h-full relative transition-all duration-700 ease-in-out">
-          <img
-            src={getImageSrc(womenImage2, '/src/assets/women-in-tech2.jpg')}
-            alt="Inspiring Innovation"
-            className="w-full h-full object-cover"
-            onError={e => {
-              e.target.onerror = null;
-              e.target.src = '/src/assets/women-in-tech2.jpg';
-              console.error('Failed to load image:', womenImage2);
-            }}
-          />
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-40 text-white">
-            <h2 className="text-4xl font-bold mb-4">Inspiring Innovation</h2>
-          </div>
-        </div>
-      )}
-
-      {/* Slide 3 */}
-      {currentIndex === 2 && (
-        <div className="w-full h-full relative transition-all duration-700 ease-in-out">
-          <img
-            src={getImageSrc(womenImage3, '/src/assets/women-in-tech3.jpg')}
-            alt="Building Future Leaders"
-            className="w-full h-full object-cover"
-            onError={e => {
-              e.target.onerror = null;
-              e.target.src = '/src/assets/women-in-tech3.jpg';
-              console.error('Failed to load image:', womenImage3);
-            }}
-          />
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-40 text-white">
-            <h2 className="text-4xl font-bold mb-4">Building Future Leaders</h2>
-          </div>
-        </div>
-      )}
-
-      {/* Slide 4 */}
-      {currentIndex === 3 && (
-        <div className="w-full h-full relative transition-all duration-700 ease-in-out">
-          <img
-            src={getImageSrc(womenImage4, '/src/assets/women-in-tech4.jpg')}
-            alt="Breaking Barriers"
-            className="w-full h-full object-cover"
-            onError={e => {
-              e.target.onerror = null;
-              e.target.src = '/src/assets/women-in-tech4.jpg';
-              console.error('Failed to load image:', womenImage4);
-            }}
-          />
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-40 text-white">
-            <h2 className="text-4xl font-bold mb-4">Breaking Barriers</h2>
-          </div>
-        </div>
-      )}
-
+      </div>
       {/* Navigation dots */}
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {[0, 1, 2, 3].map((index) => (
+      <div style={{
+        position: "absolute",
+        bottom: 20,
+        left: "50%",
+        transform: "translateX(-50%)",
+        display: "flex",
+        gap: 8
+      }}>
+        {heroSlides.map((_, idx) => (
           <button
-            key={index}
-            type="button"
-            className={`w-3 h-3 rounded-full ${
-              currentIndex === index ? "bg-white" : "bg-gray-500"
-            }`}
-            aria-current={currentIndex === index ? "true" : "false"}
-            aria-label={`Slide ${index + 1}`}
-            onClick={() => setCurrentIndex(index)}
-          ></button>
+            key={idx}
+            style={{
+              width: 12, height: 12, borderRadius: "50%",
+              background: currentIndex === idx ? "white" : "gray",
+              border: "none"
+            }}
+            aria-current={currentIndex === idx ? "true" : "false"}
+            aria-label={`Slide ${idx + 1}`}
+            onClick={() => setCurrentIndex(idx)}
+          />
         ))}
       </div>
     </section>
