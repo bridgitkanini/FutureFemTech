@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import womenImage1 from "../../../assets/women-in-tech1.jpg";
-import womenImage2 from "../../../assets/women-in-tech2.jpg";
-import womenImage3 from "../../../assets/women-in-tech3.jpg";
-import womenImage4 from "../../../assets/women-in-tech4.jpg";
+import {
+  womenImage1,
+  womenImage2,
+  womenImage3,
+  womenImage4,
+} from "../../../assets";
 
 const heroSlides = [
   {
@@ -32,48 +34,63 @@ const Hero = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === heroSlides.length - 1 ? 0 : prevIndex + 1));
+      setCurrentIndex((prevIndex) =>
+        prevIndex === heroSlides.length - 1 ? 0 : prevIndex + 1
+      );
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section style={{ minHeight: "100vh", position: "relative", width: "100%" }}>
+    <section
+      style={{ minHeight: "100vh", position: "relative", width: "100%" }}
+    >
       <div style={{ width: "100%", height: "100vh", position: "relative" }}>
         <img
           src={heroSlides[currentIndex].src}
           alt={heroSlides[currentIndex].alt}
           style={{ width: "100%", height: "100vh", objectFit: "cover" }}
         />
-        <div style={{
-          position: "absolute",
-          top: 0, left: 0, right: 0, bottom: 0,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "rgba(0,0,0,0.4)",
-          color: "white"
-        }}>
-          <h2 className="text-4xl font-bold mb-4">{heroSlides[currentIndex].title}</h2>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "rgba(0,0,0,0.4)",
+            color: "white",
+          }}
+        >
+          <h2 className="text-4xl font-bold mb-4">
+            {heroSlides[currentIndex].title}
+          </h2>
         </div>
       </div>
       {/* Navigation dots */}
-      <div style={{
-        position: "absolute",
-        bottom: 20,
-        left: "50%",
-        transform: "translateX(-50%)",
-        display: "flex",
-        gap: 8
-      }}>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 20,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: 8,
+        }}
+      >
         {heroSlides.map((_, idx) => (
           <button
             key={idx}
             style={{
-              width: 12, height: 12, borderRadius: "50%",
+              width: 12,
+              height: 12,
+              borderRadius: "50%",
               background: currentIndex === idx ? "white" : "gray",
-              border: "none"
+              border: "none",
             }}
             aria-current={currentIndex === idx ? "true" : "false"}
             aria-label={`Slide ${idx + 1}`}
