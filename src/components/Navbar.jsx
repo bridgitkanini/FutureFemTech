@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <nav className="bg-yellow-500 bg-opacity-70 backdrop-blur-lg fixed top-0 left-0 right-0 py-3 px-4 md:px-10 z-50">
       <div className="container mx-auto flex items-center justify-between">
-        <h2 className="text-lg font-bold text-black">FutureFemTeck</h2>
+        <h2 className="text-lg font-bold text-black">FutureFemTech</h2>
         {/* Hamburger for mobile */}
         <button
           className="md:hidden flex items-center px-2 py-1 text-black focus:outline-none"
