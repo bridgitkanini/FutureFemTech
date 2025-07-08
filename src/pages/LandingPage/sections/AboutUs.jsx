@@ -1,4 +1,3 @@
-// AboutUs.jsx
 import { aboutImage } from "../../../assets";
 
 const AboutUs = () => {

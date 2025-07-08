@@ -1,4 +1,3 @@
-import React from "react";
 import empoweringImg from "../../assets/empowering.jpeg";
 import hackathonImg from "../../assets/hackathon.jpeg";
 import javaImg from "../../assets/java.jpeg";
@@ -27,7 +26,7 @@ const MentorshipPage = () => {
             💸 Cost: Free, in-person
           </p>
           <p className="text-sm mb-4">
-            Join us for a dynamic event featuring Africa's top female
+            Join us for a dynamic event featuring Africa&apos;s top female
             cybersecurity experts, including innovators like Lindiwe Matlali and
             Anna Collard. Dive into live panels, practical cyber tips, and
             networking with inspiring women shaping the future of digital

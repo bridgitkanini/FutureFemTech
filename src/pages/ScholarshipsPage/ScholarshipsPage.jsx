@@ -1,5 +1,3 @@
-import React from "react";
-
 const ScholarshipsPage = () => {
   return (
     <div className="text-center py-20">

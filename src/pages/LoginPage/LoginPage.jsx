@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
@@ -67,7 +66,7 @@ const LoginPage = () => {
             </div>
             <div className="text-center mt-4">
               <p className="text-gray-600">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link to="/sign-up" className="text-blue-500 hover:underline">
                   Sign up
                 </Link>

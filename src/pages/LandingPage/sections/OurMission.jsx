@@ -1,4 +1,3 @@
-import React from "react";
 import { missionImage } from "../../../assets";
 
 const OurMission = () => {
