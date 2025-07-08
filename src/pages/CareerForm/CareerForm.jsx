@@ -49,14 +49,23 @@ const CareerForm = () => {
         setLoading(true);
         setError("");
         const prompt = `
-Based on these answers, suggest the most suitable STEM career path and 3 alternative options.
-Answers: ${updatedAnswers.join(", ")}
-Respond ONLY with valid JSON in this format:
-{
-  "suitableCareer": "...",
-  "careerChoices": ["...", "...", "..."]
-}
-Do not include any explanation or extra text.
+  Based on these answers, suggest the most suitable STEM career path and 3 alternative options.
+  Answers: ${updatedAnswers.join(", ")}
+  Respond ONLY with valid JSON in this format:
+  {
+    "careers": [
+      {
+        "name": "...",
+        "description": "...",
+        "courses": [
+          { "title": "...", "link": "..." },
+          { "title": "...", "link": "..." }
+        ]
+      },
+      // ... up to 4 careers
+    ]
+  }
+  Do not include any explanation or extra text.
 `;
 
         console.log("About to call Gemini proxy with prompt:", prompt);
@@ -71,7 +80,12 @@ Do not include any explanation or extra text.
 
           let data;
           try {
-            data = JSON.parse(result.text);
+            // Remove code block markers if present
+            let text = result.text.trim();
+            if (text.startsWith("```")) {
+              text = text.replace(/```json|```/g, "").trim();
+            }
+            data = JSON.parse(text);
           } catch {
             const match = result.text.match(/\{[\s\S]*\}/);
             if (match) {
@@ -88,14 +102,13 @@ Do not include any explanation or extra text.
               return;
             }
           }
-          if (!data || !data.suitableCareer || !data.careerChoices) {
+          if (!data || !data.careers || !Array.isArray(data.careers) || data.careers.length === 0) {
             setError("No career recommendations available at the moment.");
             setLoading(false);
             return;
           }
-
-          const suitableCareerPath = data.suitableCareer;
-          const careerChoices = data.careerChoices;
+          const suitableCareerPath = data.careers[0]?.name || "";
+          const careerChoices = data.careers;
 
           console.log("Navigating with:", { suitableCareerPath, careerChoices });
           navigate(`/career-path/${suitableCareerPath}`, {
