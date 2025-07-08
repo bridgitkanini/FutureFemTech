@@ -13,23 +13,27 @@ import CareerForm from "../pages/CareerForm/CareerForm";
 
 const AppRoutes = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
-        <Route path="/career-form" element={<CareerForm />} />
-        <Route
-          path="/career-path/:suitableCareerPath"
-          element={<CareersPage />}
-        />
-        <Route path="/mentorship" element={<MentorshipPage />} />
-        <Route path="/scholarships" element={<ScholarshipsPage />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <div className="min-h-screen flex flex-col">
+      <Router>
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/career-form" element={<CareerForm />} />
+            <Route
+              path="/career-path/:suitableCareerPath"
+              element={<CareersPage />}
+            />
+            <Route path="/mentorship" element={<MentorshipPage />} />
+            <Route path="/scholarships" element={<ScholarshipsPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </div>
   );
 };
 
